@@ -36,8 +36,10 @@
             this.buttonKuldes = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFizetes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -49,12 +51,13 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBoxNev);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(42, 26);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(965, 174);
+            this.groupBox1.Size = new System.Drawing.Size(1031, 174);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Kiválasztott felhasználó";
             // 
             // label1
             // 
@@ -114,7 +117,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(517, 94);
+            this.buttonDelete.Location = new System.Drawing.Point(516, 94);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(160, 37);
             this.buttonDelete.TabIndex = 5;
@@ -123,18 +126,30 @@
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(288, 94);
+            this.buttonUpdate.Location = new System.Drawing.Point(307, 94);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(160, 37);
             this.buttonUpdate.TabIndex = 6;
             this.buttonUpdate.Text = "Módosítás";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewUsers
+            // 
+            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(0, 174);
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.RowHeadersWidth = 62;
+            this.dataGridViewUsers.RowTemplate.Height = 28;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(1031, 276);
+            this.dataGridViewUsers.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 450);
+            this.Controls.Add(this.dataGridViewUsers);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Felhasználó nyílvántartás";
@@ -142,6 +157,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFizetes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -156,6 +172,7 @@
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonKuldes;
+        private System.Windows.Forms.DataGridView dataGridViewUsers;
     }
 }
 
