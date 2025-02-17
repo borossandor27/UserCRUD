@@ -29,9 +29,9 @@ namespace UserCRUD
 
             await getUsers(); // Várakozunk az adatok betöltésére
 
-            foreach (var item in users)
+            foreach (User item in users)
             {
-                Console.WriteLine(item.nev);
+                Console.WriteLine(item.Nev);
             }
             dataGridViewUsers.DataSource = users;
             
@@ -47,28 +47,8 @@ namespace UserCRUD
                 {
                     string jsonString = await response.Content.ReadAsStringAsync();
 
-                    // Levágjuk a külső szögletes zárójeleket []
-                    jsonString = jsonString.Trim('[', ']');
-
-                    // eltávolítjuk a whitespace karaktereket és az idézőjeleket
-                    jsonString = Regex.Replace(jsonString, @"\t|\n|\r|""", string.Empty);
-
-                    int i = 0;
-                    while (i < jsonString.Length)
-                    {
-                        // Egy {felhasználó adatai} szövege
-                        string userText = "";
-                        while (jsonString[i] != '}')
-                        {
-                            userText += jsonString[i];
-                            i++;
-                        }
-                        userText += "}";
-                        // A felhasználó adatainak szövege
-                        User user = new User(userText.Trim());
-                        users.Add(user);
-                        i++;
-                    }
+                    // JSON deszerializálás (helyes megoldás a JSON feldolgozására)
+                    users = JsonConvert.DeserializeObject<List<User>>(jsonString);
                 }
                 else
                 {
@@ -77,10 +57,8 @@ namespace UserCRUD
             }
             catch (HttpRequestException e)
             {
-
                 MessageBox.Show(e.Message);
             }
-            
         }
     }
 }
