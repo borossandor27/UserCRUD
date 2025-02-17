@@ -11,87 +11,44 @@ namespace UserCRUD
 {
     public partial class User
     {
-        [JsonProperty(" id ", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Id { get; set; }
 
-        [JsonProperty(" nev ", NullValueHandling = NullValueHandling.Ignore)]
-        public string Nev { get; set; }
 
-        [JsonProperty(" fizetes ", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Fizetes { get; set; }
-
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public long? UserId { get; set; }
-
-        [JsonProperty("nev", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserNev { get; set; }
-
-        [JsonProperty("fizetes", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(DecodingChoiceConverter))]
-        public long? UserFizetes { get; set; }
-    }
-
-    public partial class User
-    {
-        public static List<User> FromJson(string json) => JsonConvert.DeserializeObject<List<User>>(json, UserCRUD.Converter.Settings);
-    }
-
-    public static class Serialize
-    {
-        public static string ToJson(this List<User> self) => JsonConvert.SerializeObject(self, UserCRUD.Converter.Settings);
-    }
-
-    internal static class Converter
-    {
-        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        public User(string jsontext)
         {
-            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
-            DateParseHandling = DateParseHandling.None,
-            Converters =
+            jsontext = jsontext.Trim('{', '}', ' ',',');
+            string[] adatok= jsontext.Split(',');
+            
+            if (!long.TryParse(adatok[0].Split(':')[1].Trim(), out long id))
             {
-                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
-        };
-    }
-
-    internal class DecodingChoiceConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            switch (reader.TokenType)
-            {
-                case JsonToken.Integer:
-                    var integerValue = serializer.Deserialize<long>(reader);
-                    return integerValue;
-                case JsonToken.String:
-                case JsonToken.Date:
-                    var stringValue = serializer.Deserialize<string>(reader);
-                    long l;
-                    if (Int64.TryParse(stringValue, out l))
-                    {
-                        return l;
-                    }
-                    break;
+                throw new FormatException("érvénytelen paraméter!");
             }
-            throw new Exception("Cannot unmarshal type long");
+            this.id = id;
+            this.nev = adatok[1].Split(':')[1].Trim();
+            if (!long.TryParse(adatok[2].Split(':')[1].Trim(), out long fizetes)) { 
+                throw new FormatException("érvénytelen fizetés érték!"); 
+            }
+            this.id = id;
+            this.nev = nev;
+            this.fizetes = fizetes;
         }
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        public User(long id, string nev, long fizetes)
         {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (long)untypedValue;
-            serializer.Serialize(writer, value);
-            return;
+            this.id = id;
+            this.nev = nev;
+            this.fizetes = fizetes;
         }
 
-        public static readonly DecodingChoiceConverter Singleton = new DecodingChoiceConverter();
+        [JsonProperty("id")]
+        public long id { get; set; }
+
+        [JsonProperty("nev")]
+        public string nev { get; set; }
+
+        [JsonProperty("fizetes")]
+        public long fizetes { get; set; }
+
+
     }
 
 }
