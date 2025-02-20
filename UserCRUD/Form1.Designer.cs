@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxNev = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDownFizetes = new System.Windows.Forms.NumericUpDown();
-            this.buttonKuldes = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonKuldes = new System.Windows.Forms.Button();
+            this.numericUpDownFizetes = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxNev = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxid = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFizetes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
@@ -44,6 +46,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxid);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.buttonUpdate);
             this.groupBox1.Controls.Add(this.buttonDelete);
             this.groupBox1.Controls.Add(this.buttonKuldes);
@@ -58,35 +62,40 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kiválasztott felhasználó";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // label1
+            // buttonUpdate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Név";
+            this.buttonUpdate.Location = new System.Drawing.Point(307, 94);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(160, 37);
+            this.buttonUpdate.TabIndex = 6;
+            this.buttonUpdate.Text = "Módosítás";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
             // 
-            // textBoxNev
+            // buttonDelete
             // 
-            this.textBoxNev.Location = new System.Drawing.Point(98, 31);
-            this.textBoxNev.Name = "textBoxNev";
-            this.textBoxNev.Size = new System.Drawing.Size(204, 26);
-            this.textBoxNev.TabIndex = 1;
+            this.buttonDelete.Location = new System.Drawing.Point(516, 94);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(160, 37);
+            this.buttonDelete.TabIndex = 5;
+            this.buttonDelete.Text = "Törlés";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // label2
+            // buttonKuldes
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(344, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Fizetés";
+            this.buttonKuldes.Location = new System.Drawing.Point(98, 94);
+            this.buttonKuldes.Name = "buttonKuldes";
+            this.buttonKuldes.Size = new System.Drawing.Size(160, 37);
+            this.buttonKuldes.TabIndex = 4;
+            this.buttonKuldes.Text = "Kuldes";
+            this.buttonKuldes.UseVisualStyleBackColor = true;
+            this.buttonKuldes.Click += new System.EventHandler(this.buttonKuldes_Click);
             // 
             // numericUpDownFizetes
             // 
-            this.numericUpDownFizetes.Location = new System.Drawing.Point(449, 38);
+            this.numericUpDownFizetes.Location = new System.Drawing.Point(637, 38);
             this.numericUpDownFizetes.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -106,32 +115,30 @@
             0,
             0});
             // 
-            // buttonKuldes
+            // label2
             // 
-            this.buttonKuldes.Location = new System.Drawing.Point(98, 94);
-            this.buttonKuldes.Name = "buttonKuldes";
-            this.buttonKuldes.Size = new System.Drawing.Size(160, 37);
-            this.buttonKuldes.TabIndex = 4;
-            this.buttonKuldes.Text = "Kuldes";
-            this.buttonKuldes.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(560, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Fizetés";
             // 
-            // buttonDelete
+            // textBoxNev
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(516, 94);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(160, 37);
-            this.buttonDelete.TabIndex = 5;
-            this.buttonDelete.Text = "Törlés";
-            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.textBoxNev.Location = new System.Drawing.Point(322, 40);
+            this.textBoxNev.Name = "textBoxNev";
+            this.textBoxNev.Size = new System.Drawing.Size(204, 26);
+            this.textBoxNev.TabIndex = 1;
             // 
-            // buttonUpdate
+            // label1
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(307, 94);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(160, 37);
-            this.buttonUpdate.TabIndex = 6;
-            this.buttonUpdate.Text = "Módosítás";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(243, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Név";
             // 
             // dataGridViewUsers
             // 
@@ -143,6 +150,24 @@
             this.dataGridViewUsers.RowTemplate.Height = 28;
             this.dataGridViewUsers.Size = new System.Drawing.Size(1031, 276);
             this.dataGridViewUsers.TabIndex = 1;
+            this.dataGridViewUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsers_CellClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(21, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "id";
+            // 
+            // textBoxid
+            // 
+            this.textBoxid.Location = new System.Drawing.Point(77, 40);
+            this.textBoxid.Name = "textBoxid";
+            this.textBoxid.ReadOnly = true;
+            this.textBoxid.Size = new System.Drawing.Size(100, 26);
+            this.textBoxid.TabIndex = 8;
             // 
             // Form1
             // 
@@ -173,6 +198,8 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonKuldes;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.TextBox textBoxid;
+        private System.Windows.Forms.Label label3;
     }
 }
 
